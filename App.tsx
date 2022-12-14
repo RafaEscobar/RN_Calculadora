@@ -7,10 +7,14 @@ import { NativeBaseConfigProvider } from 'native-base/lib/typescript/core/Native
 
 export const App = () => {
   return (
+    //! 1) Encajonamos todo en el SafeArea
     <SafeAreaView style={styles.main_backgroud}>
+      {/* //! 2) Establecemos el StatusBar para estilizar la app visualmente*/}
       <StatusBar 
+      //* 2.1) Establecemos el fondo negro al StatusBar
         backgroundColor='black'
       />
+      {/* //! 3) Mandamos a llamar a nuestra Screen principal  */}
       <CalculadoraScreen />
     </SafeAreaView>
   )

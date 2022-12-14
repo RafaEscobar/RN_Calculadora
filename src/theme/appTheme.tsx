@@ -5,37 +5,35 @@ export const styles = StyleSheet.create({
     main_backgroud: {
         flex: 1,
         backgroundColor: 'black',
-        //* 1) -> Padding de 15 proporcionado por el SafeArea */
         padding: 15,
     },
-    // Texto del resultado
-    // * 2.1) -> Generamos el estilo completo del texto del resultado, (Resultado grande)
+    // Para texto del resultado grande
     txt_resultado: {
         color: 'white',
         fontSize: 60,
         textAlign: 'right',
     },
-    // * 2.2) -> Generamos el estilo completo del texto del resultado (Resusltado pequeño)
+    // Para texto del resultado pequeño
     txt_resultadoSmall: {
         color: 'rgba(255,255,255, 0.6)',
         fontSize: 40,
         textAlign: 'right',
     },
+    // Para botones generales... (Para casi todos los btns)
     btn_numbers: {
         backgroundColor: '#9B9B9B',
         width:80,
         height:80,
         borderRadius: 40,
     },
+    // Para contenedor inmediato de los btns
     myRow: {
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    // Contenedor general de los elementos
+    // Contenedor general
     main_box: {
         flex: 1,
-        // backgroundColor: 'aqua',
-        //* 3) -> Tira hacia abajo el texto del resultado */
         justifyContent: 'flex-end'
     },
 
