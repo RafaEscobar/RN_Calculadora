@@ -21,15 +21,22 @@ export const styles = StyleSheet.create({
     },
     // Para botones generales... (Para casi todos los btns)
     btn_numbers: {
-        backgroundColor: '#9B9B9B',
         width:80,
         height:80,
         borderRadius: 40,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    // Texto del btn
+    btn_text:{
+        fontSize: 25,
+        fontWeight: '500'
     },
     // Para contenedor inmediato de los btns
     myRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginVertical: 6,
     },
     // Contenedor general
     main_box: {
