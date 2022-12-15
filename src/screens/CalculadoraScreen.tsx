@@ -15,12 +15,48 @@ export const CalculadoraScreen = () => {
     setNumero('0');
   }
 
+
+  // Costruir la concatencación del numero... cada que se presione un btn numerico se agregara su valor al <Text> de numero
   const generarNum = (numeroTexto: string) => {
-    setNumero(numero + numeroTexto);
+
+    // Evitar colocar mas de 1 punto (.)
+    if(numero.includes('.') && numeroTexto==='.') return;
+
+    // Si empieza con 0 o -0
+    if(numero.startsWith('0') || numero.startsWith('-0')){
+
+      // Permitir el primer punto
+      if(numeroTexto==='.'){
+        setNumero(numero + numeroTexto);
+
+        // Permitir tantos 0 como se deseen despues del punto
+      }else if(numeroTexto==='0' && numero.includes('.')){
+        setNumero(numero + numeroTexto);
+
+        // Reemplazar el 0 por el valor ingresado
+      }else if(numeroTexto !== '0' && !numero.includes('.')){
+        setNumero(numeroTexto);
+      }else if(numeroTexto==='0' && !numero.includes('.')){
+        setNumero(numero);
+      }
+
+    }else{
+      setNumero(numero + numeroTexto);
+    }
+  
   }
 
   const generarNum2 = (simboloText: string) =>{
     setResultado(simboloText);
+  }
+
+  // Si el valor de -numero- contiene un signo negativo, se le retirara.... de lo contrario se le colocara.
+  const positiveNegative = () => {
+    if(numero.includes('-')){
+      setNumero(numero.replace('-', ''));
+    }else{
+      setNumero('-'+numero);
+    }
   }
 
   return (
@@ -37,33 +73,33 @@ export const CalculadoraScreen = () => {
       <View style={styles.myRow}>
         {/* //! 11) Mandamos a llamar al componente de BTN cada vez que requiramos de un btn */}
           <BtnGrlComponent texto='C'  color='#0000C6' action={btn_clear}/>
-          <BtnGrlComponent texto='+/-' color='#0000C6' action={generarNum2}/>
+          <BtnGrlComponent texto='+/-' color='#0000C6' action={positiveNegative}/>
           <BtnGrlComponent texto='%' color='#0000C6' action={generarNum2}/>
-          <BtnGrlComponent texto='/' color='#ffff39' action={generarNum2}/>
+          <BtnGrlComponent texto='/' color='#00ffff' action={generarNum2}/>
       </View>
       {/* //! 12) Generamos todas las filas restantes */}
       <View style={styles.myRow}>
           <BtnGrlComponent texto='7'  action={generarNum}/>
           <BtnGrlComponent texto='8' action={generarNum}/>
           <BtnGrlComponent texto='9' action={generarNum}/>
-          <BtnGrlComponent texto='X' color='#ffff39' action={generarNum2}/>
+          <BtnGrlComponent texto='X' color='#00ffff' action={generarNum2}/>
       </View>
       <View style={styles.myRow}>
           <BtnGrlComponent texto='4'  action={generarNum}/>
           <BtnGrlComponent texto='5' action={generarNum}/>
           <BtnGrlComponent texto='6' action={generarNum}/>
-          <BtnGrlComponent texto='-' color='#ffff39' action={generarNum2}/>
+          <BtnGrlComponent texto='-' color='#00ffff' action={generarNum2}/>
       </View>
       <View style={styles.myRow}>
           <BtnGrlComponent texto='1'  action={generarNum}/>
           <BtnGrlComponent texto='2' action={generarNum}/>
           <BtnGrlComponent texto='3' action={generarNum}/>
-          <BtnGrlComponent texto='+' color='#ffff39' action={generarNum2}/>
+          <BtnGrlComponent texto='+' color='#00ffff' action={generarNum2}/>
       </View>
       <View style={styles.myRow}>
           <BtnGrlComponent texto='0' ancho={true} action={generarNum}/>
           <BtnGrlComponent texto='.' action={generarNum}/>
-          <BtnGrlComponent texto='=' color='#ffff39' action={generarNum2}/>
+          <BtnGrlComponent texto='=' color='#00ffff' action={generarNum2}/>
       </View>
     </NativeBaseProvider>
   )

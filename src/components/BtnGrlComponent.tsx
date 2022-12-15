@@ -26,8 +26,8 @@ export const BtnGrlComponent = ({ texto, color='#2D2D2D', ancho=false, action }:
           <Text style={{ 
           //* 10.4) Desestructuramos los estilos del texto del btn 
              ...styles.btn_text, 
-             //* 10.5) Si el atributo color es -#ffff39- colocamos la fuente de texto como negra para que pueda visualizarse adecuadamente... de lo contrario que se establezca el blanco como color de fuente para el tetxo
-             color: (color==='#ffff39') ? 'black' : 'white' }}>{texto}</Text>
+             //* 10.5) Si el atributo color es -#00ffff- colocamos la fuente de texto como negra para que pueda visualizarse adecuadamente... de lo contrario que se establezca el blanco como color de fuente para el tetxo
+             color: (color==='#00ffff') ? 'black' : 'white' }}>{texto}</Text>
       </Box>
     </TouchableOpacity>
   )
