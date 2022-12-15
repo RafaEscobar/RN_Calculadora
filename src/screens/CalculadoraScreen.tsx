@@ -1,54 +1,70 @@
 import { Button, NativeBaseProvider } from 'native-base'
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View } from 'react-native'
 import { BtnGrlComponent } from '../components/BtnGrlComponent'
 import { styles } from '../theme/appTheme'
 
 //! 4) Creamos nuestra Screen principal
 export const CalculadoraScreen = () => {
+
+  const [numero, setNumero] = useState('0');
+  const [resultado, setResultado] = useState('0');
+
+  // Limpiar-resetaer el valor de -numero-
+  const btn_clear = () => {
+    setNumero('0');
+  }
+
+  const generarNum = (numeroTexto: string) => {
+    setNumero(numero + numeroTexto);
+  }
+
+  const generarNum2 = (simboloText: string) =>{
+    setResultado(simboloText);
+  }
+
   return (
     //! 5) Abrazamos todo el el -NativeBaseProvider- ya que usaremos -NativeBase-
     <NativeBaseProvider>
       {/* //! 6) Creamoos una View que contendra las etiquetas de resultados */}
       <View style={styles.main_box}>
         {/* //* 6.1) Resuktado pequeño */}
-          <Text style={styles.txt_resultadoSmall}> 000000 </Text>
+          <Text style={styles.txt_resultadoSmall}>{resultado}</Text>
           {/* //* 6.2) Resultado grande */}
-          <Text style={styles.txt_resultado}>15,000.00</Text>
+          <Text style={styles.txt_resultado} numberOfLines={1} adjustsFontSizeToFit>{numero}</Text>
       </View>
       {/* //! 7) Creamos la caja de los btns */}
       <View style={styles.myRow}>
         {/* //! 11) Mandamos a llamar al componente de BTN cada vez que requiramos de un btn */}
-          <BtnGrlComponent texto='C'  color='#0000C6'/>
-          <BtnGrlComponent texto='+/-' color='#0000C6'/>
-          <BtnGrlComponent texto='%' color='#0000C6'/>
-          <BtnGrlComponent texto='/' color='#ffff39'/>
+          <BtnGrlComponent texto='C'  color='#0000C6' action={btn_clear}/>
+          <BtnGrlComponent texto='+/-' color='#0000C6' action={generarNum2}/>
+          <BtnGrlComponent texto='%' color='#0000C6' action={generarNum2}/>
+          <BtnGrlComponent texto='/' color='#ffff39' action={generarNum2}/>
       </View>
       {/* //! 12) Generamos todas las filas restantes */}
       <View style={styles.myRow}>
-          <BtnGrlComponent texto='7' />
-          <BtnGrlComponent texto='8'/>
-          <BtnGrlComponent texto='9'/>
-          <BtnGrlComponent texto='X' color='#ffff39'/>
+          <BtnGrlComponent texto='7'  action={generarNum}/>
+          <BtnGrlComponent texto='8' action={generarNum}/>
+          <BtnGrlComponent texto='9' action={generarNum}/>
+          <BtnGrlComponent texto='X' color='#ffff39' action={generarNum2}/>
       </View>
       <View style={styles.myRow}>
-          <BtnGrlComponent texto='4' />
-          <BtnGrlComponent texto='5'/>
-          <BtnGrlComponent texto='6'/>
-          <BtnGrlComponent texto='-' color='#ffff39'/>
+          <BtnGrlComponent texto='4'  action={generarNum}/>
+          <BtnGrlComponent texto='5' action={generarNum}/>
+          <BtnGrlComponent texto='6' action={generarNum}/>
+          <BtnGrlComponent texto='-' color='#ffff39' action={generarNum2}/>
       </View>
       <View style={styles.myRow}>
-          <BtnGrlComponent texto='1' />
-          <BtnGrlComponent texto='2'/>
-          <BtnGrlComponent texto='3'/>
-          <BtnGrlComponent texto='+' color='#ffff39'/>
+          <BtnGrlComponent texto='1'  action={generarNum}/>
+          <BtnGrlComponent texto='2' action={generarNum}/>
+          <BtnGrlComponent texto='3' action={generarNum}/>
+          <BtnGrlComponent texto='+' color='#ffff39' action={generarNum2}/>
       </View>
       <View style={styles.myRow}>
-          <BtnGrlComponent texto='0' ancho={true}/>
-          <BtnGrlComponent texto='.'/>
-          <BtnGrlComponent texto='=' color='#ffff39'/>
+          <BtnGrlComponent texto='0' ancho={true} action={generarNum}/>
+          <BtnGrlComponent texto='.' action={generarNum}/>
+          <BtnGrlComponent texto='=' color='#ffff39' action={generarNum2}/>
       </View>
-      
     </NativeBaseProvider>
   )
 }

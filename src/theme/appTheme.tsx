@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
         color: 'rgba(255,255,255, 0.6)',
         fontSize: 40,
         textAlign: 'right',
+        top: 15,
     },
     // Para botones generales... (Para casi todos los btns)
     btn_numbers: {

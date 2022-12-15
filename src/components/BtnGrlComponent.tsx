@@ -8,13 +8,14 @@ interface Props {
     texto: string,
     color?: string,
     ancho?: boolean,
+    action: (numeroTexto: string) => void,
 }
 
 //! 9) Creamos el componente para los btns y Desestructuramos los parametros que usaremos 
-export const BtnGrlComponent = ({ texto, color='#2D2D2D', ancho=false }:Props) => {
+export const BtnGrlComponent = ({ texto, color='#2D2D2D', ancho=false, action }:Props) => {
   return (
     //! 10) Creamos el btn dentro de <Touchable> para dar efecto de pulsado
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => action(texto)}>
       <Box style={{ 
         //* 10.1) Desestructuramos estilos de btn
          ...styles.btn_numbers, 
