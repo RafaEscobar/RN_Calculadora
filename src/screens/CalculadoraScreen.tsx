@@ -7,16 +7,16 @@ import { styles } from '../theme/appTheme'
 //! 4) Creamos nuestra Screen principal
 export const CalculadoraScreen = () => {
 
+  //! 13) Crear uses States
   const [numero, setNumero] = useState('0');
   const [resultado, setResultado] = useState('0');
 
-  // Limpiar-resetaer el valor de -numero-
+  //! 14) Crear metodo para limpiar-resetaer el valor de -numero-
   const btn_clear = () => {
     setNumero('0');
   }
 
-
-  // Costruir la concatencación del numero... cada que se presione un btn numerico se agregara su valor al <Text> de numero
+  //! 15) Crear metodo para costruir la concatencación del numero... cada que se presione un btn numerico se agregara su valor al <Text> de numero
   const generarNum = (numeroTexto: string) => {
 
     // Evitar colocar mas de 1 punto (.)
@@ -36,6 +36,8 @@ export const CalculadoraScreen = () => {
         // Reemplazar el 0 por el valor ingresado
       }else if(numeroTexto !== '0' && !numero.includes('.')){
         setNumero(numeroTexto);
+
+        // 
       }else if(numeroTexto==='0' && !numero.includes('.')){
         setNumero(numero);
       }
@@ -46,16 +48,27 @@ export const CalculadoraScreen = () => {
   
   }
 
+  // ******
   const generarNum2 = (simboloText: string) =>{
     setResultado(simboloText);
   }
 
-  // Si el valor de -numero- contiene un signo negativo, se le retirara.... de lo contrario se le colocara.
+  //! 16) Si el valor de -numero- contiene un signo negativo, se le retirara.... de lo contrario se le colocara.
   const positiveNegative = () => {
     if(numero.includes('-')){
       setNumero(numero.replace('-', ''));
-    }else{
+    }else if(numero!=='0'){
       setNumero('-'+numero);
+    }
+  }
+
+  //! 17) Eliminar ultimo digito ingresado
+  const delDigito = () => {
+    let tam = numero.length;
+    if(tam===1 || (tam===2 && numero.includes('-'))){
+      setNumero('0');
+    }else{
+      setNumero(numero.slice(0, (tam-1)));
     }
   }
 
@@ -74,7 +87,7 @@ export const CalculadoraScreen = () => {
         {/* //! 11) Mandamos a llamar al componente de BTN cada vez que requiramos de un btn */}
           <BtnGrlComponent texto='C'  color='#0000C6' action={btn_clear}/>
           <BtnGrlComponent texto='+/-' color='#0000C6' action={positiveNegative}/>
-          <BtnGrlComponent texto='%' color='#0000C6' action={generarNum2}/>
+          <BtnGrlComponent texto='del' color='#0000C6' action={delDigito}/>
           <BtnGrlComponent texto='/' color='#00ffff' action={generarNum2}/>
       </View>
       {/* //! 12) Generamos todas las filas restantes */}
